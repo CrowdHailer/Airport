@@ -2,7 +2,7 @@ require './Lib/Airport'
 
 describe Airport do
 
-	let(:plane) { double :plane }
+	let(:plane) { double :plane, land: nil }
 	let(:gate) { double :gate }
 	let(:available_gate) { double :gate, available?: true }
 	let(:unavailable_gate) { double :gate, available?: false}
@@ -71,13 +71,13 @@ describe Airport do
 	end
 
 	context 'traffic control in good weather' do
-		let(:available_gate) { double :gate, available?: true }
+		let(:available_gate) { double :gate, available?: true, dock: :plane }
 		let(:airport) { Airport.new [available_gate]}
-		let(:unavailable_gate) { double :gate, available?: false}
+		let(:unavailable_gate) { double :gate, available?: false, undock: plane}
 		let(:full_airport) { Airport.new [unavailable_gate]}
 
 		before do
-			airport.current_conditions
+			airport.stub(:current_conditions) { "Clear"}
 		end
 
 		it 'should land an approaching plane if gate available' do
@@ -93,6 +93,16 @@ describe Airport do
 		it 'should hold a plane if airport full' do
 			full_airport.approach(plane)
 			expect(full_airport.holding_pattern).to eq([plane])
+		end
+
+		it 'should place a landed plane in gate' do
+			expect(available_gate).to receive(:dock)
+			airport.approach(plane)
+		end
+
+		it 'should be able to launch a plane' do
+			expect(gate).to receive(:undock)
+			airport.depart(gate)
 		end
 	end
 

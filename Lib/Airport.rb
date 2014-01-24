@@ -13,9 +13,14 @@ class Airport
 	def approach plane
 		if !full? && clear_to_fly?
 			clear_to_land plane
+			next_gate.dock plane
 		else
 			hold_plane plane
 		end
+	end
+
+	def depart gate
+		gate.undock
 	end
 
 	def weather_conditions location
