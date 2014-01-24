@@ -3,6 +3,10 @@ module Weather
 	def current_conditions
 		CONDITIONS.sample
 	end
+
+	def clear_to_fly?
+		current_conditions == "Clear"
+	end
 	
 	
 end
