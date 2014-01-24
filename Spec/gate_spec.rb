@@ -14,5 +14,12 @@ describe Gate do
 		expect(gate).not_to be_available
 	end
 
+	it 'should be available after undocking a plane' do
+		plane = double :plane
+		gate.dock(plane)
+		gate.undock(plane)
+		expect(gate).to be_available
+	end
+
 
 end
