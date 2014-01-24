@@ -9,6 +9,10 @@ class Airport
 		location.current_conditions
 	end
 
+	def available_gates
+		gates.select{|g| g.available?}
+	end
+
 
 	
 end
