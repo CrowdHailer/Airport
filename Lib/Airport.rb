@@ -13,6 +13,10 @@ class Airport
 		gates.select{|g| g.available?}
 	end
 
+	def next_gate
+		available_gates.first
+	end
+
 	def full?
 		available_gates.count == 0
 	end

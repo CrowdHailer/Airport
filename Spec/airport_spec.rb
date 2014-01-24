@@ -16,6 +16,10 @@ describe Airport do
 		expect(two_gate_airport.available_gates).to eq([available_gate])
 	end
 
+	it 'should be able to return first available gate' do
+		expect(two_gate_airport.next_gate).to eq(available_gate)
+	end
+
 	it 'should be able to test if gates available' do
 		expect(two_gate_airport).not_to be_full
 	end
