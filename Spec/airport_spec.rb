@@ -41,20 +41,23 @@ describe Airport do
 	end
 
 	context 'traffic control' do
+		let(:airport) { Airport.new }
+
 		it 'should be able to land a plane' do
-			airport = Airport.new
 			expect(plane).to receive(:land)
 			airport.clear_to_land(plane)
 		end
 
 		it 'should be able to clear a plane to take off' do
-			airport = Airport.new
 			expect(plane).to receive(:take_off)
 			airport.clear_to_take_off(plane)
 		end
 
-		it 'should not land a plane if weather not clear' do
-			
+
+
+		it 'should hold a plane if weather not clear' do
+			airport.hold_plane(plane)
+			expect(airport.holding_pattern).to eq([plane])
 		end
 
 

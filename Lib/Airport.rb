@@ -30,5 +30,9 @@ class Airport
 		plane.take_off
 	end
 
+	def hold_plane plane
+		holding_pattern << plane
+	end
+
 	
 end
