@@ -1,22 +1,21 @@
 class Gate 
 	def initialize
-		@plane = nil
+		@parking = []
 	end
 
 	def available?
-		plane.nil?
+		parking.empty?
 	end
 
 	def dock plane
-		self.plane = plane
+		parking << plane
 	end
 
 	def undock
-		self.plane = nil
-		
+		parking.delete_at(0)
 	end
 private
 
-	attr_accessor :plane
+	attr_accessor :parking
 
 end
