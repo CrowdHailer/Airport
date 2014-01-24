@@ -71,15 +71,23 @@ describe Airport do
 	end
 
 	context 'traffic control in good weather' do
-		let(:airport) { Airport.new }
+		let(:available_gate) { double :gate, available?: true }
+		let(:airport) { Airport.new [available_gate]}
+		let(:unavailable_gate) { double :gate, available?: false}
+		let(:full_airport) { Airport.new [unavailable_gate]}
 
 		before do
 			airport.current_conditions
 		end
 
-		it 'should land an approaching plane' do
+		it 'should land an approaching plane if gate available' do
 			expect(plane).to receive(:land)
 			airport.approach(plane)
+		end
+
+		it 'should not land a plane if airport full' do
+			expect(plane).not_to receive(:land)
+			full_airport.approach(plane)
 		end
 	end
 
