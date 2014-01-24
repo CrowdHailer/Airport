@@ -77,7 +77,7 @@ describe Airport do
 		let(:full_airport) { Airport.new [unavailable_gate]}
 
 		before do
-			airport.stub(:current_conditions) { "Clear"}
+			Airport.any_instance.stub(:current_conditions) { "Clear"}
 		end
 
 		it 'should land an approaching plane if gate available' do
@@ -108,8 +108,26 @@ describe Airport do
 		it 'should launch a plane from gate' do
 			expect(plane).to receive(:take_off)
 			full_airport.depart(unavailable_gate)
-
 		end
+
+	end
+	context 'traffic control in bad weather' do
+		let(:unavailable_gate) { double :gate, available?: false, undock: plane}
+		let(:full_airport) { Airport.new [unavailable_gate]}
+
+		before do
+			Airport.any_instance.stub(:current_conditions) { "Stormy"}
+		end
+		it 'should not be able to undock a plane from gate' do
+			expect(unavailable_gate).not_to receive(:undock)
+			full_airport.depart(unavailable_gate)
+		end
+
+		it 'should not launch a plane from gate' do
+			expect(plane).not_to receive(:take_off)
+			full_airport.depart(unavailable_gate)
+		end
+
 	end
 
 end

@@ -20,6 +20,7 @@ class Airport
 	end
 
 	def depart gate
+		return unless clear_to_fly?
 		departing_plane = gate.undock
 		clear_to_take_off departing_plane
 	end
