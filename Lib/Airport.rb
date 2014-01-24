@@ -11,7 +11,11 @@ class Airport
 	attr_reader :gates, :holding_pattern
 
 	def approach plane
-		plane.land unless full?
+		if !full? && clear_to_fly?
+			clear_to_land plane
+		else
+			hold_plane plane
+		end
 	end
 
 	def weather_conditions location

@@ -89,6 +89,11 @@ describe Airport do
 			expect(plane).not_to receive(:land)
 			full_airport.approach(plane)
 		end
+
+		it 'should hold a plane if airport full' do
+			full_airport.approach(plane)
+			expect(full_airport.holding_pattern).to eq([plane])
+		end
 	end
 
 end
