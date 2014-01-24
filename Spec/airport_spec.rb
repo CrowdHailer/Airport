@@ -63,8 +63,15 @@ describe Airport do
 		it 'should be able to land a plane' do
 			airport = Airport.new
 			expect(plane).to receive(:land)
-			airport.land(plane)
+			airport.clear_to_land(plane)
 		end
+
+		it 'should be able to clear a plane to take off' do
+			airport = Airport.new
+			expect(plane).to receive(:take_off)
+			airport.clear_to_take_off(plane)
+		end
+
 
 	end
 end

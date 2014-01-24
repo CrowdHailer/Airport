@@ -22,10 +22,13 @@ class Airport
 		available_gates.count == 0
 	end
 
-	def land plane
+	def clear_to_land plane
 		plane.land
 	end
 
+	def clear_to_take_off plane
+		plane.take_off
+	end
 
 	
 end
