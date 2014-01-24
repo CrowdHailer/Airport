@@ -11,7 +11,10 @@ class Gate
 		self.plane = plane
 	end
 
-
+	def undock
+		self.plane = nil
+		
+	end
 private
 
 	attr_accessor :plane
