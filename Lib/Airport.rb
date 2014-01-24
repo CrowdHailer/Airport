@@ -1,5 +1,5 @@
 class Airport 
-	def initialize(gates)
+	def initialize(gates=[])
 		@gates = gates
 	end
 	
