@@ -1,9 +1,10 @@
 class Airport 
 	def initialize(gates=[])
 		@gates = gates
+		@holding_pattern = []
 	end
 	
-	attr_reader :gates
+	attr_reader :gates, :holding_pattern
 
 	def weather_conditions location
 		location.current_conditions
@@ -19,6 +20,10 @@ class Airport
 
 	def full?
 		available_gates.count == 0
+	end
+
+	def land plane
+		plane.land
 	end
 
 
