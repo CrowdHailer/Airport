@@ -2,7 +2,7 @@ require './Lib/Airport'
 
 describe Airport do
 
-	let(:plane) { double :plane, land: nil }
+	let(:plane) { double :plane, land: nil, take_off: nil }
 	let(:gate) { double :gate }
 	let(:available_gate) { double :gate, available?: true }
 	let(:unavailable_gate) { double :gate, available?: false}
@@ -100,9 +100,15 @@ describe Airport do
 			airport.approach(plane)
 		end
 
-		it 'should be able to launch a plane' do
-			expect(gate).to receive(:undock)
-			airport.depart(gate)
+		it 'should be able to undock a plane from gate' do
+			expect(unavailable_gate).to receive(:undock)
+			full_airport.depart(unavailable_gate)
+		end
+
+		it 'should launch a plane from gate' do
+			expect(plane).to receive(:take_off)
+			full_airport.depart(unavailable_gate)
+
 		end
 	end
 

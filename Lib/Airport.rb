@@ -20,7 +20,8 @@ class Airport
 	end
 
 	def depart gate
-		gate.undock
+		departing_plane = gate.undock
+		clear_to_take_off departing_plane
 	end
 
 	def weather_conditions location
