@@ -8,5 +8,11 @@ describe Gate do
 		expect(gate).to be_available
 	end
 
+	it 'should be unavailable after docking a plane' do
+		plane = double :plane
+		gate.dock(plane)
+		expect(gate).not_to be_available
+	end
+
 
 end
