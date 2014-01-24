@@ -25,5 +25,14 @@ describe Gate do
 		expect(gate.undock).to eq(plane)
 	end
 
+	it 'should raise an error if dock is called when unavailable' do
+		gate.dock(plane)
+		expect{ gate.dock(plane) }.to raise_error
+	end
+
+	it 'should raise an error if undock is called on empty gate' do
+		expect{ gate.undock }.to raise_error
+	end
+
 
 end
