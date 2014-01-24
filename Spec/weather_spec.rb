@@ -24,12 +24,12 @@ describe Weather do
 	end
 
 	it 'should return clear to fly on clear days' do
-		weather.stub(:weather_conditions) { "Clear" }
+		weather.stub(:current_conditions) { "Clear" }
 		expect(weather).to be_clear_to_fly
 	end
 
 	it 'should not return clear to fly on Stormy days' do
-		weather.stub(:weather_conditions) { "Stormy" }
+		weather.stub(:current_conditions) { "Stormy" }
 		expect(weather).not_to be_clear_to_fly
 	end
 end
