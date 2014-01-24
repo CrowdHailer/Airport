@@ -48,6 +48,7 @@ describe Airport do
 			weather_center = double :weather_center, current_conditions: "Clear"
 
 			airport = Airport.new
+			airport.stub(:weather_conditions) { "Clear" }
 			expect(airport.weather_conditions(weather_center)).to eq("Clear")
 		end
 
@@ -70,6 +71,10 @@ describe Airport do
 			airport = Airport.new
 			expect(plane).to receive(:take_off)
 			airport.clear_to_take_off(plane)
+		end
+
+		it 'should not land a plane if weather not clear' do
+			
 		end
 
 
