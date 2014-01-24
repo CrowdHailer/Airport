@@ -53,11 +53,20 @@ describe Airport do
 			airport.clear_to_take_off(plane)
 		end
 
-
-
-		it 'should hold a plane if weather not clear' do
+		it 'should be able to hold a plane' do
 			airport.hold_plane(plane)
 			expect(airport.holding_pattern).to eq([plane])
+		end
+
+		it 'should be able to remove a plane from holding pattern' do
+			airport.hold_plane(plane)
+			airport.unhold_plane(plane)
+			expect(airport.holding_pattern).to be_empty
+		end
+
+		it 'should return any plane removed from holding' do
+			airport.hold_plane(plane)
+			expect(airport.unhold_plane(plane)).to eq(plane)
 		end
 
 

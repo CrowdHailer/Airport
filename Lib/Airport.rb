@@ -34,5 +34,9 @@ class Airport
 		holding_pattern << plane
 	end
 
+	def unhold_plane plane
+		holding_pattern.delete(plane)
+	end
+
 	
 end
