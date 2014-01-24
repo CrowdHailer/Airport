@@ -9,7 +9,14 @@ describe Plane do
 	end
 
 	it 'can land' do
-		expect(plane.land).not_to be_flying
+		plane.land
+		expect(plane).not_to be_flying
+	end
+
+	it 'can take off' do
+		plane.land
+		plane.take_off
+		expect(plane).to be_flying
 	end
 
 end

@@ -8,6 +8,11 @@ class Plane
 		flying
 	end
 
+	def land
+		self.flying = false
+	end
+
+
 private
-	attr_reader :flying
+	attr_accessor :flying
 end
