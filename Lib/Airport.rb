@@ -33,6 +33,10 @@ class Airport
 		gates.select{|g| g.available?}
 	end
 
+	def full_gates
+		gates.reject{|g| g.available?}
+	end
+
 	def next_gate
 		available_gates.first
 	end
