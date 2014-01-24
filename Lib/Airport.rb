@@ -4,5 +4,9 @@ class Airport
 	end
 	
 	attr_reader :gates
+
+	def weather_conditions
+		"Clear"
+	end
 	
 end

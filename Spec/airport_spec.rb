@@ -9,6 +9,10 @@ describe Airport do
 	it 'should return the weather conditions as "Clear"' do
 		airport = Airport.new 10
 		expect(airport.weather_conditions).to eq("Clear")
-		
+	end
+
+	it 'should return the weather conditions as "Stormy"' do
+		airport = Airport.new 10
+		expect(airport.weather_conditions).to eq("Stormy")
 	end
 end
