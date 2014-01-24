@@ -1,10 +1,18 @@
+require './Lib/weather'
+
 class Airport 
+	include Weather
+
 	def initialize(gates=[])
 		@gates = gates
 		@holding_pattern = []
 	end
 	
 	attr_reader :gates, :holding_pattern
+
+	def approach plane
+		plane.land
+	end
 
 	def weather_conditions location
 		location.current_conditions

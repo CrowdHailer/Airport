@@ -68,7 +68,19 @@ describe Airport do
 			airport.hold_plane(plane)
 			expect(airport.unhold_plane(plane)).to eq(plane)
 		end
-
-
 	end
+
+	context 'traffic control in good weather' do
+		let(:airport) { Airport.new }
+
+		before do
+			airport.current_conditions
+		end
+
+		it 'should land an approaching plane' do
+			expect(plane).to receive(:land)
+			airport.approach(plane)
+		end
+	end
+
 end
