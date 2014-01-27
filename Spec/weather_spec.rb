@@ -8,12 +8,15 @@ describe Weather do
 
 	let(:weather) { WeatherSpec.new }
 
+	# Don't worry about checking return types
 	it 'should return a string describing the weather' do
 		expect(weather.current_conditions.class).to eq(String)
 	end
 
+	# this will only check that at least one is clear, not mostly clear as the test name implies
 	it 'should mostly return Clear' do
-		records = (0..100).inject([]){ |t| t << weather.current_conditions }
+		records = (0..100).map { weather.current_conditions }
+		# records = (0..100).inject([]){ |t| t << weather.current_conditions }
 		expect(records.any? { |e| e == "Clear" }).to be_true
 	end
 

@@ -8,6 +8,7 @@ class Plane
 	end
 
 	def land
+		# you could have done @flying = false to avoid having a private accessor
 		self.flying = false
 	end
 
