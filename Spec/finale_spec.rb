@@ -2,9 +2,13 @@ require './Lib/gate'
 require './Lib/plane'
 
 describe "System" do
-	gates = [Gate.new,Gate.new,Gate.new,Gate.new,Gate.new,Gate.new,Gate.new,Gate.new]
-	planes = [Plane.new,Plane.new,Plane.new,Plane.new,Plane.new,Plane.new]
-	airport = Airport.new (gates)
+
+	let(:gates) { Array.new(8) { Gate.new } }
+	# gates = [Gate.new,Gate.new,Gate.new,Gate.new,Gate.new,Gate.new,Gate.new,Gate.new]
+	let(:planes) { Array.new(6) { Plane.new } }
+	# planes = [Plane.new,Plane.new,Plane.new,Plane.new,Plane.new,Plane.new]
+	let(:airport) { Airport.new(gates) }
+
 	it 'should land 6 planes' do
 		planes.each{ |plane| airport.approach(plane) }
 		while airport.holding_pattern.count != 0 do
